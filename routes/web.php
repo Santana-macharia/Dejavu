@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordsController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/records', [RecordsController::class, 'index']);
+
+
+
+
+
 

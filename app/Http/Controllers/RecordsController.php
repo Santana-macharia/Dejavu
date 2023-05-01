@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Http;
 class RecordsController extends Controller
 {
     public function index()
-{
-    $url = 'https://dejavutechkenya.com/dejavuurls/dejavurecs.php';
-    $response = file_get_contents($url);
-    $records = json_decode($response);
+    {
+        $response = Http::get('https://dejavutechkenya.com/dejavuurls/dejavurecs.php');
+        $data = json_decode($response->getBody());
 
-    return view('record')->with('records', $records);
+        return view('record', ['data' => $data]);
+    }
 }
-
-}    

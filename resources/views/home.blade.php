@@ -34,55 +34,58 @@
     </div>
 
     <button type="submit">Submit</button>
-  </form>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p id="modal-text"></p>
+    </form>
+  <div id="modal-container">
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modal-text"></p>
+      </div>
     </div>
   </div>
-
-  <script src="{{ asset('js/home.js') }}"></script>
   <script>
+    function showModal(formData) {
+      const modal = document.getElementById('modal');
+      const modalText = document.getElementById('modal-text');
+
+      // Display the form data in the modal
+      modalText.innerText = JSON.stringify(Object.fromEntries(formData));
+
+      // Show the modal
+      modal.style.display = 'block';
+
+      // Send a JSON POST request with the form data to the specified URL
+      const url = 'https://dejavutechkenya.com/dejavuurls/dejavuurls.php';
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+
     const productForm = document.getElementById('product-form');
-    const modal = document.getElementById('modal');
-    const modalText = document.getElementById('modal-text');
 
     productForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const formData = new FormData(productForm);
-      const url = 'https://dejavutechkenya.com/dejavuurls/dejavuurls.php';
 
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(formData)),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          modalText.innerText = JSON.stringify(data);
-          modal.style.display = 'block';
-        })
-        .catch(error => {
-          modalText.innerText = 'Error: ' + error;
-          modal.style.display = 'block';
-        });
+      showModal(formData);
     });
+
+    const modal = document.getElementById('modal');
+    const modalContainer = document.getElementById('modal-container');
 
     modal.querySelector('.close').addEventListener('click', () => {
       modal.style.display = 'none';
     });
 
     window.addEventListener('click', (event) => {
-      if (event.target === modal) {
+      if (event.target === modalContainer) {
         modal.style.display = 'none';
       }
     });

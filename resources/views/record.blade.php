@@ -14,47 +14,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($records as $record)
-            <tr>
-            @if(isset($record['date_created']))
-  <td>{{ $record['date_created'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-@if(isset($record['username']))
-  <td>{{ $record['username'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-@if(isset($record['product']))
-  <td>{{ $record['product'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-@if(isset($record['current_quantity']))
-  <td>{{ $record['current_quantity'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-@if(isset($record['transfered_qty']))
-  <td>{{ $record['transfered_qty'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-@if(isset($record['department']))
-  <td>{{ $record['department'] }}</td>
-@else
-  <td>-</td>
-@endif
-
-            </tr>
-        @endforeach
-    </tbody>
+            @foreach ($data->body as $row)
+                <tr>
+                    <td>{{ $row->date_created }}</td>
+                    <td>{{ $row->username }}</td>
+                    <td>{{ $row->product }}</td>
+                    <td>{{ $row->current_quantity }}</td>
+                    <td>{{ $row->transfered_qty }}</td>
+                    <td>{{ $row->department }}</td>
+                </tr>
+            @endforeach
+        </tbody>
 </table>
 
 @endsection
