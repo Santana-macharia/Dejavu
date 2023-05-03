@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordsController;
+use App\Http\Controllers\ProductsController;
+
 
 
 
@@ -21,6 +23,13 @@ Route::get('/', function () {
 });
 
 Route::get('/records', [RecordsController::class, 'index']);
+
+Route::post('/product', [ProductsController::class, 'store'])->name('product.store');
+
+Route::get('/products', [ProductsController::class, 'index']);
+
+
+
 
 
 

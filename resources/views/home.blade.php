@@ -2,7 +2,8 @@
 
 @section('content')
   <h1>Product Form</h1>
-  <form class="my-form" id="product-form">
+  <form class="my-form" id="product-form" method="POST" action="{{ route('product.store') }}">
+  @csrf
     <div class="form-row">
         <label for="date_created">Date Created:</label>
         <input type="date" name="date_created" id="date_created" required>
@@ -35,15 +36,15 @@
 
     <button type="submit">Submit</button>
     </form>
-  <div id="modal-container">
+  <!-- <div id="modal-container">
     <div id="modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <p id="modal-text"></p>
       </div>
     </div>
-  </div>
-  <script>
+  </div> -->
+  <!-- <script>
     function showModal(formData) {
       const modal = document.getElementById('modal');
       const modalText = document.getElementById('modal-text');
@@ -55,7 +56,7 @@
       modal.style.display = 'block';
 
       // Send a JSON POST request with the form data to the specified URL
-      const url = 'https://dejavutechkenya.com/dejavuurls/dejavuurls.php';
+      const url = 'https://dejavutechkenya.com/dejavuurls/dejavurecs.php';
       fetch(url, {
         method: 'POST',
         headers: {
@@ -89,5 +90,5 @@
         modal.style.display = 'none';
       }
     });
-  </script>
+  </script> -->
 @endsection

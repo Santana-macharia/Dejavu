@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1>Records Table</h1>
+  <h1>Records List</h1>
   <table>
     <thead>
         <tr>
